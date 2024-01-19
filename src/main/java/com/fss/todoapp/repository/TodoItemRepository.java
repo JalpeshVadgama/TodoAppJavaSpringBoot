@@ -3,8 +3,8 @@ package com.fss.todoapp.repository;
 import com.fss.todoapp.model.TodoItem;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class TodoItemRepository
@@ -16,6 +16,12 @@ public class TodoItemRepository
 
     public List<TodoItem> findAll() {
         return todoItems;
+    }
+
+    public Optional<TodoItem> findById(int id) {
+        return todoItems.stream()
+                .filter(todoItem -> todoItem.id() == id)
+                .findAny();
     }
 
 
